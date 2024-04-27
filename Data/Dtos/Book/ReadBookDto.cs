@@ -17,5 +17,5 @@ public class ReadBookDto
     public double Price { get; set; }
     [Range(1, 600, ErrorMessage = "A quantirade em estoque deve ter no mínimo 1 e no máximo 600 livros")]
     public int InventoryQuantity { get; set; }
-
+    public DateTime RetrievedAt{ get; set; } = DateTime.Now;
 }

@@ -34,4 +34,43 @@ public class BookController : ControllerBase
     {
         return _bookContext.Books;
     }
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
+    public IActionResult GetBook(int id)
+    {
+        Book book = _bookContext.Books.FirstOrDefault(book => book.Id == id);
+        if (book == null)
+        {
+            return NotFound();
+        }
+        ReadBookDto readBookDto = _mapper.Map<ReadBookDto>(book);
+        return Ok(readBookDto);
+    }
+
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public IActionResult Update(int id, [FromBody] UpdateBookDto updateBookDto)
+    {
+        Book book = _bookContext.Books.FirstOrDefault(book => book.Id == id);
+        if (book == null)
+        {
+            return NotFound();
+        }
+        _mapper.Map(updateBookDto, book);
+        _bookContext.SaveChanges();
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        Book book = _bookContext.Books.FirstOrDefault(book => book.Id == id);
+        if (book == null)
+        {
+            return NotFound();
+        }
+        _bookContext.Remove(book);
+        return NoContent();
+    }
 }
