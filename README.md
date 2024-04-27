@@ -26,7 +26,11 @@ Este repositório contém o código-fonte para uma API REST destinada a uma Livrari
     dotnet restore
     ```
 
-3. **Configurar o Ambiente**: Antes de executar a API, certifique-se de configurar as variáveis de ambiente necessárias, como as credenciais do banco de dados, portas de escuta, etc.
+3. **Configurar o Ambiente**: Antes de executar a API, certifique-se de configurar as variáveis de ambiente necessárias, como as credenciais do banco de dados, portas de escuta, migrações, etc.
+
+    ```bash
+    dotnet ef database update
+    ```
 
 4. **Executar a API**: Uma vez configurado, você pode iniciar o servidor da API executando o seguinte comando:
 
