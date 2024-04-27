@@ -1,3 +1,6 @@
+using BookstoreAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddDbContext<BookContext>(options => options.UseSqlite("Data Source=bookstore.db"));
 
 var app = builder.Build();
 
