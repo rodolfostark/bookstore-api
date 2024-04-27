@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BookstoreAPI.Data.Dtos.Book;
+using BookstoreAPI.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookstoreAPI.Controllers;
@@ -7,8 +9,9 @@ namespace BookstoreAPI.Controllers;
 public class BookController : ControllerBase
 {
     [HttpPost]
-    public IActionResult CreateBook()
+    public IActionResult Create([FromBody] CreateBookDto createBookDto)
     {
-
+        var book = new Book();
+        return Created();
     }
 }

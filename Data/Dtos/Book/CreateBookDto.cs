@@ -1,12 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BookstoreAPI.Entities;
+namespace BookstoreAPI.Data.Dtos.Book;
 
-public class Book
+public class CreateBookDto
 {
-    [Key]
-    [Required]
-    public int Id { get; set; }
     [Required(ErrorMessage = "O campo título é obrigatório")]
     public string Title { get; set; } = string.Empty;
     [Required(ErrorMessage = "O campo autor é obrigatório")]
