@@ -71,6 +71,7 @@ public class BookController : ControllerBase
             return NotFound();
         }
         _bookContext.Remove(book);
+        _bookContext.SaveChanges();
         return NoContent();
     }
 }
