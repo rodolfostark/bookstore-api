@@ -20,7 +20,7 @@ public class BookController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(Book), StatusCodes.Status201Created)]
-    public IActionResult Create([FromBody] CreateBookDto createBookDto)
+    public IActionResult CreateBook([FromBody] CreateBookDto createBookDto)
     {
         Book book = _mapper.Map<Book>(createBookDto);
         _bookContext.Books.Add(book);
@@ -30,7 +30,7 @@ public class BookController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Book>), StatusCodes.Status200OK)]
-    public IEnumerable<Book> GetAllBooks()
+    public IEnumerable<Book> GetBooks()
     {
         return _bookContext.Books;
     }
@@ -50,7 +50,7 @@ public class BookController : ControllerBase
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public IActionResult Update(int id, [FromBody] UpdateBookDto updateBookDto)
+    public IActionResult UpdateBook(int id, [FromBody] UpdateBookDto updateBookDto)
     {
         Book book = _bookContext.Books.FirstOrDefault(book => book.Id == id);
         if (book == null)
@@ -63,7 +63,7 @@ public class BookController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public IActionResult DeleteBook(int id)
     {
         Book book = _bookContext.Books.FirstOrDefault(book => book.Id == id);
         if (book == null)
